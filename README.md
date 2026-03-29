@@ -10,6 +10,8 @@ I went looking for a public dataset that had real sensor data from cooling equip
 
 What I liked about this dataset is that it captures the same kind of signals you'd see in commercial refrigeration -- temperature trends, compressor power draw, efficiency degradation -- but with labelled failure states that you rarely get from production equipment.
 
+The raw data is just a flat matrix of sensor readings from a single test rig though -- no units, no sites, no relational structure. So the data engineering challenge was to take that and model it as a fleet: map cycles to individual cooling units across NZ sites, generate realistic timestamps, and build a schema you could actually query with fleet-level questions. That mapping is the Transform step, and without it there are no foreign keys, no JOINs, no "which site has the highest failure rate" -- just rows of numbers.
+
 ## What I Built
 
 A straightforward ETL pipeline in Python that takes the raw sensor files and turns them into a clean, queryable SQLite database, with a Streamlit dashboard for exploring the results.
@@ -107,5 +109,5 @@ etl_pipeline.py       -- the ETL script (extract, transform, load)
 run_analysis.py       -- runs the SQL queries and prints formatted results
 analysis_queries.sql  -- standalone SQL file (10 queries)
 dashboard.py          -- Streamlit dashboard (fleet overview, conditions, anomalies, unit drilldown)
-cooling_monitor.db    -- generated database (not tracked in git)
+cooling_monitor.db    -- generated database (included so the dashboard works out of the box)
 ```
