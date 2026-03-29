@@ -31,8 +31,10 @@ def load_query(sql):
 # -- Sidebar ------------------------------------------------------------------
 st.sidebar.title("Cooling Fleet Monitor")
 st.sidebar.markdown(
-    "Operational dashboard for a fleet of 20 cooling units "
-    "across 5 NZ regions. Built on the UCI Hydraulic Systems dataset."
+    "Sensor data from the "
+    "[UCI Hydraulic Systems dataset](https://archive.ics.uci.edu/dataset/447) "
+    "(ZeMA, Germany), mapped to a simulated fleet of 20 cooling "
+    "units across 5 NZ regions."
 )
 
 page = st.sidebar.radio(
